@@ -3,6 +3,7 @@ name: CI
 on:
   push:
     branches: [main]
+    paths: ['./cicd']
 
 jobs:
   build-and-test:
@@ -15,4 +16,5 @@ jobs:
           java-version: '21'
 
       - name: Build with Maven
-        run: mvn clean verify --projects :cicd
+        working-directory: ./cicd
+        run: mvn clean verify
