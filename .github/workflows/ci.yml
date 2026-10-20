@@ -3,7 +3,7 @@ name: CI
 on:
   push:
     branches: [main]
-    paths: ['./cicd', '.github/workflows']
+    paths: ['cicd/**', '.github/workflows/**']
 
 jobs:
   build-and-test:
@@ -16,5 +16,5 @@ jobs:
           java-version: '21'
 
       - name: Build with Maven
-        working-directory: ./cicd
+        working-directory: cicd
         run: mvn clean verify
