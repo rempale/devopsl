@@ -14,7 +14,14 @@ jobs:
         with:
           distribution: temurin
           java-version: '21'
+          cache: 'maven'
 
       - name: Build with Maven
         working-directory: cicd
-        run: mvn clean verify
+        run: mvn clean package
+
+      - name: Upload build artifact
+        uses: actions/upload-artifact@v6
+        with:
+          name: my-built-jar
+          path: cicd/target/*.jar
