@@ -9,8 +9,8 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-java@v4
+      - uses: actions/checkout@v6
+      - uses: actions/setup-java@v6
         with:
           distribution: temurin
           java-version: '21'
@@ -21,10 +21,12 @@ jobs:
         run: mvn test
 
   build:
+    needs: test
+
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-java@v4
+      - uses: actions/checkout@v6
+      - uses: actions/setup-java@v6
         with:
           distribution: temurin
           java-version: '21'
@@ -35,7 +37,7 @@ jobs:
         run: mvn clean package -DskipTests
 
       - name: Upload build artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v6
         with:
           name: my-built-jar
           path: cicd/target/*.jar
